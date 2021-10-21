@@ -1,3 +1,15 @@
+import os
+import sys
+from pyfiglet import figlet_format as banner
+
+
+def clear():
+    cmd = "clear"
+    if "win" in sys.platform:
+        cmd = "cls"
+    os.system(cmd)
+
+
 def get_board():
     board = {}
     for letter in ["a", "b", "c"]:
@@ -44,11 +56,11 @@ def str_to_dict(inp: str):
     return out
 
 def print_board(board):
-    print(f"""  1 2 3
+    print(banner(f"""         1  2  3
 a {board["a"]["1"]} {board["a"]["2"]} {board["a"]["3"]}
 b {board["b"]["1"]} {board["b"]["2"]} {board["b"]["3"]}
 c {board["c"]["1"]} {board["c"]["2"]} {board["c"]["3"]}
-""")
+"""))
 
 
 if __name__ == "__main__":

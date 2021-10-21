@@ -1,6 +1,7 @@
 from networking import Client
 from functions import *
 import re
+from pyfiglet import figlet_format as banner
 
 
 class App:
@@ -19,8 +20,10 @@ class App:
 
             if self.data["reason"] == "your-turn":
                 self.board = str_to_board(self.data["content"])
+                clear()
                 print_board(self.board)
 
+                print("Your turn")
                 is_valid = False
                 while not is_valid:
                     placement = input("> ").lower()
@@ -31,12 +34,14 @@ class App:
                             quit()
                         else:
                             print("Invalid field")
-                print("")
 
                 placement = list(placement)
                 self.board[placement[0]][placement[1]] = self.icon
 
                 self.client.post(board_to_str(self.board))
+
+                clear()
+                print_board(self.board)
 
             elif self.data["reason"] == "end":
                 state = self.data["content"].split(";")[0]
@@ -45,11 +50,11 @@ class App:
                 print(f'\n{"-"*10}\n')
                 print_board(board)
                 if state == "tie":
-                    print("It's a tie!")
+                    print(banner("It's a tie!"))
                 elif state == self.icon:
-                    print("You won!")
+                    print(banner("You won!"))
                 else:
-                    print("You lose")
+                    print(banner("You lose"))
                 quit()
 
 

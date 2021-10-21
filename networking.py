@@ -39,9 +39,8 @@ class Server:
 class Client:
     def __init__(self):
         self.ip, self.port = None, None
-        self.my_ip = gethostbyname(gethostname())
 
-    def setup(self, ip=self.my_ip, port=1234):
+    def setup(self, ip=gethostbyname(gethostname()), port=1234):
         self.ip, self.port = ip, port
 
         self.client = socket(AF_INET, SOCK_STREAM)
@@ -49,7 +48,7 @@ class Client:
 
     def connect(self):
         self.client.connect((self.ip, self.port))
-        self.client.send(self.my_ip.encode())
+        self.client.send(gethostbyname(gethostname()).encode())
         print(f"Connected to {self.ip}\n")
 
     def get(self):
