@@ -11,23 +11,13 @@ class Server:
         self.ip, self.port = None, None
         self.connections = {}
 
-        self.setup()
-
-    def setup(self):
-        self.ip, self.port = self.get_inf(1512)
+    def setup(self, ip=gethostbyname(gethostname()), port=1234):
+        self.ip, self.port = ip, port
 
         self.server = socket(AF_INET, SOCK_STREAM)
         self.server.bind((self.ip, self.port))
         self.server.listen(2)
         print("Server open\n")
-
-    def get_inf(self, port="random"):
-        if port == "random":
-            port = rint(1000, 5000)
-        ip = gethostbyname(gethostname())
-        print(f"IP: {ip}; Port: {port}")
-
-        return ip, port
 
     def new_connection(self, id: str):
         if id in self.connections:
@@ -48,23 +38,18 @@ class Server:
 
 class Client:
     def __init__(self):
-        self.ip, self.port = self.get_inf("dbug")
+        self.ip, self.port = None, None
+        self.my_ip = gethostbyname(gethostname())
+
+    def setup(self, ip=self.my_ip, port=1234):
+        self.ip, self.port = ip, port
 
         self.client = socket(AF_INET, SOCK_STREAM)
         self.connect()
 
-    def get_inf(self, mode="custom"):
-        if mode == "custom":
-            ip = input("Enter ip: ")
-            port = int(input("Port: "))
-        elif mode == "dbug":
-            ip = gethostbyname(gethostname())
-            port = 1512
-        return ip, port
-
     def connect(self):
         self.client.connect((self.ip, self.port))
-        self.client.send(gethostbyname(gethostname()).encode())
+        self.client.send(self.my_ip.encode())
         print(f"Connected to {self.ip}\n")
 
     def get(self):

@@ -6,6 +6,7 @@ import time as t
 class App:
     def __init__(self):
         self.server = Server()
+        self.server.setup()
 
         self.server.new_connection("p1")
         self.server.post(["p1"], "x")

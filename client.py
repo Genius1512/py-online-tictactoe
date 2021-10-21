@@ -6,6 +6,7 @@ import re
 class App:
     def __init__(self):
         self.client = Client()
+        self.client.setup()
 
         self.icon = self.client.get()
         print(f"Icon: {self.icon}\n")
@@ -22,7 +23,7 @@ class App:
 
                 is_valid = False
                 while not is_valid:
-                    placement = input("> ")
+                    placement = input("> ").lower()
                     if (re.match("[abc][123]", placement) and self.board[list(placement)[0]][list(placement)[1]] == "-") or placement == "exit":
                         is_valid = True
                     else:
