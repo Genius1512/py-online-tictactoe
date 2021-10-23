@@ -2,6 +2,7 @@ from networking import Client
 from functions import *
 import re
 from pyfiglet import figlet_format as banner
+from rich import print
 
 
 class App:
@@ -10,7 +11,7 @@ class App:
         self.client.setup()
 
         self.icon = self.client.get()
-        print(f"Icon: {self.icon}\n")
+        print(f"Icon: [blue]{self.icon}[/blue]\n")
 
         self.board = get_board()
 
@@ -23,7 +24,7 @@ class App:
                 clear()
                 print_board(self.board)
 
-                print("Your turn")
+                print("Your turn!")
                 is_valid = False
                 while not is_valid:
                     placement = input("> ").lower()
@@ -33,7 +34,7 @@ class App:
                         if placement == "exit":
                             quit()
                         else:
-                            print("Invalid field")
+                            print("[red]Invalid field[/red]")
 
                 placement = list(placement)
                 self.board[placement[0]][placement[1]] = self.icon

@@ -1,6 +1,7 @@
 from networking import Server
 from functions import *
 import time as t
+from rich import print
 
 
 class App:

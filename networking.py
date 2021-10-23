@@ -1,5 +1,6 @@
 from socket import *
 from random import randint as rint
+from rich import print
 
 
 class CustomError(Exception):
@@ -17,15 +18,16 @@ class Server:
         self.server = socket(AF_INET, SOCK_STREAM)
         self.server.bind((self.ip, self.port))
         self.server.listen(2)
-        print("Server open\n")
+        print(f"Server open with IP [blue]{self.ip}[/blue] on Port [blue]{self.port}[/blue]")
 
     def new_connection(self, id: str):
         if id in self.connections:
-            raise CustomError("Id already used")
+            print("[red]Id already used[/red]")
+            exit()
         else:
             self.connections[id], (remotehost, remoteport) = self.server.accept()
 
-            print(f"{self.connections[id].recv(1024).decode()} connected with id '{id}'")
+            print(f"[blue]{self.connections[id].recv(1024).decode()}[/blue] connected with id '[blue]{id}[/blue]'")
 
     def get(self, id: str):
         return self.connections[id].recv(1024).decode()
@@ -49,7 +51,7 @@ class Client:
     def connect(self):
         self.client.connect((self.ip, self.port))
         self.client.send(gethostbyname(gethostname()).encode())
-        print(f"Connected to {self.ip}\n")
+        print(f"Connected to [blue]{self.ip}[/blue]\n")
 
     def get(self):
         msg = self.client.recv(1024).decode()
