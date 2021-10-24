@@ -2,7 +2,7 @@ from networking import Server
 from functions import *
 import time as t
 from rich import print
-
+from keyboard import add_hotkey as key
 
 class App:
     def __init__(self):
@@ -95,4 +95,5 @@ class App:
 
 
 if __name__ == "__main__":
+    key("esc", quit)
     app = App()
