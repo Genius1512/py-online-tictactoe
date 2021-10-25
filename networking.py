@@ -18,16 +18,17 @@ class Server:
         self.server = socket(AF_INET, SOCK_STREAM)
         self.server.bind((self.ip, self.port))
         self.server.listen(2)
-        print(f"Server open with IP [blue]{self.ip}[/blue] on Port [blue]{self.port}[/blue]\n")
+        print(f"Server open with IP [blue]{self.ip}[/blue] on Port '[blue]{self.port}[/blue]'\n")
 
     def new_connection(self, id: str):
         if id in self.connections:
             print("[red]Id already used[/red]")
             exit()
         else:
+            print(f"Waiting for new connection with id [blue]{id}[/blue]")
             self.connections[id], (remotehost, remoteport) = self.server.accept()
 
-            print(f"[blue]{self.connections[id].recv(1024).decode()}[/blue] connected with id '[blue]{id}[/blue]'")
+            print(f"[blue]{self.connections[id].recv(1024).decode()}[/blue] connected with id '[blue]{id}[/blue]'\n")
 
     def get(self, id: str):
         return self.connections[id].recv(1024).decode()
