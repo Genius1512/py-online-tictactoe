@@ -2,7 +2,7 @@ from networking import Server
 from functions import *
 import time as t
 from rich import print
-from keyboard import add_hotkey as key
+
 
 class App:
     def __init__(self):
@@ -17,11 +17,15 @@ class App:
         self.server.post(["p2"], "o")
         t.sleep(0.2) # I really dont now why this is required, but it does not work without it
 
+        print("")
+
         self.board = get_board()
 
         self.done = False
         while not self.done:
+            print("[blue]P1[/blue]'s turn")
             self.get_turn("p1")
+            print("[blue]P1[/blue] made their turn\n")
             state = self.test_state(self.board)
             if not state == None:
                 self.server.post(["p1", "p2"], dict_to_str({
@@ -30,7 +34,9 @@ class App:
                 }))
                 quit()
 
+            print("[blue]P2[/blue]'s turn")
             self.get_turn("p2")
+            print("[blue]P2[/blue] made their turn\n")
             state = self.test_state(self.board)
             if not state == None:
                 self.server.post(["p1", "p2"], dict_to_str({
@@ -95,5 +101,4 @@ class App:
 
 
 if __name__ == "__main__":
-    key("esc", quit)
     app = App()
