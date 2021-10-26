@@ -11,11 +11,11 @@ class App:
 
         self.server.new_connection("p1")
         self.server.post(["p1"], "x")
-        t.sleep(0.2) # I really dont now why this is required, but it does not work without it
+        t.sleep(0.2) # TODO: Find out why this is required
 
         self.server.new_connection("p2")
         self.server.post(["p2"], "o")
-        t.sleep(0.2) # I really dont now why this is required, but it does not work without it
+        t.sleep(0.2)
 
         print("")
 
