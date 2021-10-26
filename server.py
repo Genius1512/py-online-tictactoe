@@ -6,44 +6,32 @@ from rich import print
 
 class App:
     def __init__(self):
+        # setup server
         self.server = Server()
         self.server.setup()
-
-        self.server.new_connection("p1")
-        self.server.post(["p1"], "x")
-        t.sleep(0.2) # TODO: Find out why this is required
-
-        self.server.new_connection("p2")
-        self.server.post(["p2"], "o")
-        t.sleep(0.2)
+        # get connections
+        for id in [("p1", "x"), ("p2", "o")]:
+            self.server.new_connection(id[0])
+            self.server.post([id[0]], id[1])
+            t.sleep(0.2) # TODO: Find out why this is required
 
         print("")
 
-        self.board = get_board()
+        self.board = get_board() # init game board
 
         self.done = False
         while not self.done:
-            print("[blue]P1[/blue]'s turn")
-            self.get_turn("p1")
-            print("[blue]P1[/blue] made their turn\n")
-            state = self.test_state(self.board)
-            if not state == None:
-                self.server.post(["p1", "p2"], dict_to_str({
-                    "reason": "end",
-                    "content": f"{state};{board_to_str(self.board)}"
-                }))
-                quit()
-
-            print("[blue]P2[/blue]'s turn")
-            self.get_turn("p2")
-            print("[blue]P2[/blue] made their turn\n")
-            state = self.test_state(self.board)
-            if not state == None:
-                self.server.post(["p1", "p2"], dict_to_str({
-                    "reason": "end",
-                    "content": state
-                }))
-                quit()
+            for id in ["p1", "p2"]:
+                print(f"[blue]{id.upper()}[/blue]'s turn")
+                self.get_turn(id)
+                print(f"[blue]{id.upper()}[/blue] made their turn\n")
+                state = self.test_state(self.board)
+                if not state == None: # ending
+                    self.server.post(["p1", "p2"], dict_to_str({
+                        "reason": "end",
+                        "content": f"{state};{board_to_str(self.board)}"
+                    }))
+                    quit()
 
     def get_turn(self, id):
         self.server.post([id], dict_to_str({
