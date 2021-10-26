@@ -1,3 +1,6 @@
+# This is the server for tictactoe. It handles the communication 
+# between the two clients
+
 from networking import Server
 from functions import *
 import time as t
