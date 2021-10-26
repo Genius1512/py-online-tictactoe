@@ -41,8 +41,7 @@ class Server:
         else:
             print(f"Waiting for new connection with id [blue]{id}[/blue]")
             self.connections[id], (remotehost, remoteport) = self.server.accept() # accepting the next connection
-
-            print(f"[blue]{self.connections[id].recv(1024).decode()}[/blue] connected with id '[blue]{id}[/blue]'\n")
+            print(f"[blue]{remotehost}[/blue] connected with id '[blue]{id}[/blue]'\n")
 
     def get(self, id: str): # get a message
         return self.connections[id].recv(1024).decode()
@@ -65,7 +64,6 @@ class Client:
 
     def connect(self):
         self.client.connect((self.ip, self.port))
-        self.client.send(gethostbyname(gethostname()).encode()) # for the server
         print(f"Connected to [blue]{self.ip}[/blue]\n")
 
     def get(self):
