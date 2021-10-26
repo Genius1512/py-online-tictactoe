@@ -53,10 +53,9 @@ class App:
             # if the game ends
             elif self.data["reason"] == "end":
                 state = self.data["state"]
-                board = str_to_board(self.data["board"])
+                board = self.data["board"]
                 clear()
                 # print end screen
-                print(f'\n{"-"*10}\n')
                 print_board(board)
                 if state == "tie":
                     print(banner("It's a tie!"))

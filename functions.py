@@ -12,7 +12,8 @@ def clear():
     if "win" in sys.platform:
         cmd = "cls"
     os.system(cmd)
-# print out the board
+    
+# get board
 def get_board():
     board = {}
     for letter in ["a", "b", "c"]:
@@ -21,30 +22,7 @@ def get_board():
             board[letter][number] = "-"
 
     return board
-# convert the board into a string: x-oxxoox- =
-#                                   x-o
-#                                   xxo
-#                                   ox-
 
-def board_to_str(inp: dict):
-    out = ""
-    for letter in inp:
-        for num in inp[letter]:
-            out += inp[letter][num]
-
-    return out
-# convert the string back to a board
-def str_to_board(inp: str):
-    out = {}
-    inp = list(inp)
-    ind = 0
-    for letter in ["a", "b", "c"]:
-        out[letter] = {}
-        for num in ["1", "2", "3"]:
-            out[letter][num] = inp[ind]
-            ind += 1
-
-    return out
 # prints out the board
 def print_board(board):
     print(banner(f"""         1  2  3
