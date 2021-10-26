@@ -22,7 +22,7 @@ class App:
         self.done = False
         while not self.done:
             # get sent data
-            self.data = str_to_dict(self.client.get())
+            self.data = self.client.get()
             # your turn
             if self.data["reason"] == "your-turn":
                 # output board

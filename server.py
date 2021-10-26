@@ -30,17 +30,17 @@ class App:
                 print(f"[blue]{id.upper()}[/blue] made their turn\n")
                 state = self.test_state(self.board)
                 if not state == None: # ending
-                    self.server.post(["p1", "p2"], dict_to_str({
+                    self.server.post(["p1", "p2"], {
                         "reason": "end",
                         "content": f"{state};{board_to_str(self.board)}"
-                    }))
+                    })
                     quit()
 
     def get_turn(self, id):
-        self.server.post([id], dict_to_str({
+        self.server.post([id], {
             "reason": "your-turn",
             "content": board_to_str(self.board)
-        }))
+        })
 
         self.board = str_to_board(self.server.get(id))
 

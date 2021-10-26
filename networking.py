@@ -14,6 +14,7 @@
 from socket import *
 from random import randint as rint
 from rich import print
+from pickle import loads, dumps
 
 
 class Server:
@@ -40,12 +41,12 @@ class Server:
             print(f"[blue]{remotehost}[/blue] connected with id '[blue]{id}[/blue]'\n")
 
     def get(self, id: str): # get a message
-        return self.connections[id].recv(1024).decode()
+        return loads(self.connections[id].recv(1024))
 
     def post(self, ids: list, content: str): # post a message to the specified clients
         for id in ids:
             if id in self.connections:
-                self.connections[id].send(content.encode())
+                self.connections[id].send(dumps(content))
 
 
 class Client:
@@ -63,8 +64,8 @@ class Client:
         print(f"Connected to [blue]{self.ip}[/blue]\n")
 
     def get(self):
-        msg = self.client.recv(1024).decode() # get a message from the server
+        msg = loads(self.client.recv(1024)) # get a message from the server
         return msg
 
     def post(self, content: str):
-        self.client.send(content.encode()) # send a message to the server
+        self.client.send(dumps(content)) # send a message to the server
