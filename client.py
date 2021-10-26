@@ -26,7 +26,7 @@ class App:
             # your turn
             if self.data["reason"] == "your-turn":
                 # output board
-                self.board = str_to_board(self.data["content"])
+                self.board = self.data["board"]
                 clear()
                 print_board(self.board)
 
@@ -46,14 +46,14 @@ class App:
                 placement = list(placement)
                 self.board[placement[0]][placement[1]] = self.icon
                 # send placement
-                self.client.post(board_to_str(self.board))
+                self.client.post(self.board)
 
                 clear()
                 print_board(self.board)
             # if the game ends
             elif self.data["reason"] == "end":
-                state = self.data["content"].split(";")[0]
-                board = str_to_board(self.data["content"].split(";")[1])
+                state = self.data["state"]
+                board = str_to_board(self.data["board"])
                 clear()
                 # print end screen
                 print(f'\n{"-"*10}\n')

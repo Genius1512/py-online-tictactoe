@@ -45,25 +45,6 @@ def str_to_board(inp: str):
             ind += 1
 
     return out
-# convert a dict to a string: reason/end|content/x-oxxoox = 
-#                                                           {"reason": "end",
-#                                                            "content": "x-oxxoox"
-#                                                           }
-def dict_to_str(inp: dict):
-    out = ""
-    for obj in inp:
-        out += f"{obj}/{inp[obj]}|"
-    out = out[:-1]
-
-    return out
-# convert string to dict
-def str_to_dict(inp: str):
-    out = {}
-    inp = inp.split("|")
-    for obj in inp:
-        out[obj.split("/")[0]] = obj.split("/")[1]
-
-    return out
 # prints out the board
 def print_board(board):
     print(banner(f"""         1  2  3

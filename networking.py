@@ -64,8 +64,7 @@ class Client:
         print(f"Connected to [blue]{self.ip}[/blue]\n")
 
     def get(self):
-        msg = loads(self.client.recv(1024)) # get a message from the server
-        return msg
+        return loads(self.client.recv(1024)) # get a message from the server
 
     def post(self, content: str):
         self.client.send(dumps(content)) # send a message to the server

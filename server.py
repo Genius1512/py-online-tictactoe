@@ -32,17 +32,18 @@ class App:
                 if not state == None: # ending
                     self.server.post(["p1", "p2"], {
                         "reason": "end",
-                        "content": f"{state};{board_to_str(self.board)}"
+                        "state": state,
+                        "board": self.board
                     })
                     quit()
 
     def get_turn(self, id):
         self.server.post([id], {
             "reason": "your-turn",
-            "content": board_to_str(self.board)
+            "board": self.board
         })
 
-        self.board = str_to_board(self.server.get(id))
+        self.board = self.server.get(id)
 
     def test_state(self, board):
         # horizontal
