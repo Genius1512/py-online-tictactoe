@@ -1,6 +1,9 @@
 # this is the client for the online tictactoe
 # it handles the frontend (printing the board, asking for input) and the backend (sending the turns)
 
+# TODO: GUI?
+# TODO: Android?
+
 from networking import Client
 from functions import *
 import re
@@ -58,11 +61,11 @@ class App:
                 # print end screen
                 print_board(board)
                 if state == "tie":
-                    print(banner("It's a tie!"))
+                    print("[green]" + banner("It's a tie!") + "[/green]")
                 elif state == self.icon:
-                    print(banner("You won!"))
+                    print("[blue]" + banner("You won!") + "[/blue]")
                 else:
-                    print(banner("You lose"))
+                    print("[red]" + banner("You lost!") + "[/red]")
                 quit()
 
 
