@@ -71,7 +71,3 @@ a {board["a"]["1"]} {board["a"]["2"]} {board["a"]["3"]}
 b {board["b"]["1"]} {board["b"]["2"]} {board["b"]["3"]}
 c {board["c"]["1"]} {board["c"]["2"]} {board["c"]["3"]}
 """))
-
-
-if __name__ == "__main__":
-    print_board(get_board())

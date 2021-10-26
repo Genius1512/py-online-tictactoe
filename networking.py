@@ -16,10 +16,6 @@ from random import randint as rint
 from rich import print
 
 
-class CustomError(Exception):
-    pass
-
-
 class Server:
     def __init__(self):
         self.ip, self.port = None, None
@@ -72,7 +68,3 @@ class Client:
 
     def post(self, content: str):
         self.client.send(content.encode()) # send a message to the server
-
-
-if __name__ == "__main__":
-    server = Server()
