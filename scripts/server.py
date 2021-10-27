@@ -8,10 +8,10 @@ from rich import print
 
 
 class App:
-    def __init__(self):
+    def __init__(self, port=1234):
         # setup server
         self.server = Server()
-        self.server.setup()
+        self.server.setup(port=port)
         # get connections
         for id in [("p1", "x"), ("p2", "o")]:
             self.server.new_connection(id[0])

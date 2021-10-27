@@ -3,6 +3,7 @@ import client
 import re
 from os import system
 from sys import platform
+from random import randint as rint
 
 
 def cls():
@@ -42,7 +43,7 @@ if mode == "client":
 
 elif mode == "server":
     cls()
-    app = server.App()
+    app = server.App(rint(1000, 5000))
 
 else:
     print("Fuck")
