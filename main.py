@@ -38,11 +38,10 @@ if mode == "client":
             print("Invalid")
     
     cls()
-
-
     app = client.App(ip, port)
 
 elif mode == "server":
+    cls()
     app = server.App()
 
 else:
