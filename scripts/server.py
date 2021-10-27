@@ -16,7 +16,7 @@ class App:
         for id in [("p1", "x"), ("p2", "o")]:
             self.server.new_connection(id[0])
             self.server.post([id[0]], id[1])
-            t.sleep(0.2) # TODO: Find out why this is required
+            t.sleep(0.2)
 
         print("")
 

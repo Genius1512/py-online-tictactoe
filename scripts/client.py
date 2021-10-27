@@ -1,9 +1,6 @@
 # this is the client for the online tictactoe
 # it handles the frontend (printing the board, asking for input) and the backend (sending the turns)
 
-# TODO: GUI?
-# TODO: Android?
-
 from networking import Client
 from functions import *
 import re
