@@ -4,6 +4,7 @@
 from networking import Server
 from functions import *
 import time as t
+from rich import print
 
 
 class App:
@@ -24,9 +25,9 @@ class App:
         self.done = False
         while not self.done:
             for id in ["p1", "p2"]:
-                print(f"{id.upper()}'s turn")
+                print(f"[white][blue]{id.upper()}[/blue]'s turn")
                 self.get_turn(id)
-                print(f"{id.upper()} made their turn\n")
+                print(f"[white][blue]{id.upper()}[/blue] made their turn\n")
                 state = self.test_state(self.board)
                 if not state == None: # ending
                     self.server.post(["p1", "p2"], {

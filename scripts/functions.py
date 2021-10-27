@@ -4,6 +4,7 @@
 
 import os
 import sys
+from rich import print
 
 # clear the console
 def clear():
@@ -40,4 +41,4 @@ c | 7 | 8 | 9 |
             banner = banner.replace(str(ind), board[letter][num].replace("-", " "))
     banner = "    1   2   3" + banner
     
-    print(banner)
+    print(f"[white]{banner}")

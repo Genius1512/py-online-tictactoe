@@ -13,6 +13,7 @@
 
 from socket import *
 from pickle import loads, dumps
+from rich import print
 
 
 class Server:
@@ -26,17 +27,17 @@ class Server:
         self.server = socket(AF_INET, SOCK_STREAM)
         self.server.bind((self.ip, self.port))
         self.server.listen(2)
-        print(f"Server open with IP {self.ip} on Port '{self.port}'\n")
+        print(f"[white]Server open with IP [blue]{self.ip}[/blue] on Port [blue]'{self.port}'[/blue]\n")
 
     def new_connection(self, id: str):
         # validate id
         if id in self.connections:
-            print("Id already used")
+            print("[red]Id already used")
             exit()
         else:
-            print(f"Waiting for new connection with id {id}")
+            print(f"[white]Waiting for new connection with id [blue]{id}[/blue]")
             self.connections[id], (remotehost, remoteport) = self.server.accept() # accepting the next connection
-            print(f"{remotehost} connected with id '{id}'\n")
+            print(f"[white][blue]{remotehost}[/blue] connected with id [blue]'{id}'[/blue]\n")
 
     def get(self, id: str): # get a message
         return loads(self.connections[id].recv(1024))
@@ -59,7 +60,7 @@ class Client:
 
     def connect(self):
         self.client.connect((self.ip, self.port))
-        print(f"Connected to {self.ip}\n")
+        print(f"[white]Connected to [blue]{self.ip}[/blue]\n")
 
     def get(self):
         return loads(self.client.recv(1024)) # get a message from the server

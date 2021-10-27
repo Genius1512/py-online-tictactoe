@@ -5,6 +5,7 @@ from networking import Client
 from functions import *
 import re
 from socket import gethostname, gethostbyname
+from rich import print
 
 
 class App:
@@ -19,7 +20,7 @@ class App:
         self.client.setup(ip, port)
 
         self.icon = self.client.get()
-        print(f"Icon: {self.icon}\n")
+        print(f"[white]Icon: [blue]{self.icon}[/blue]\n")
         # get board
         self.board = get_board()
 
@@ -34,13 +35,13 @@ class App:
                 clear()
                 print_board(self.board)
 
-                print("Your turn!")
+                print("[white]Your turn!")
                 # getting valid turn
                 is_valid = False
                 while not is_valid:
                     placement = input("> ").lower()
                     is_valid = (re.match("[abc][123]", placement) and self.board[list(placement)[0]][list(placement)[1]] == "-") or placement == "exit"
-                    print("Invalid field" if not is_valid else "")
+                    print("[red]Invalid field" if not is_valid else "")
                 
                 if placement == "exit":
                     quit()
