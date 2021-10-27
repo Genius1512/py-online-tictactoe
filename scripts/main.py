@@ -1,32 +1,35 @@
 from traceback import print_exc as error
+import server
+import client
+import re
+from sys import platform
+from random import randint as rint
+from os import system
 
 
 try:
-    try:
-        from rich import print
-    except ImportError:
-        print("Not all modules are installed, please install")
-        import installs
-    import server
-    import client
-    import re
-    from os import system
-    from sys import platform
-    from random import randint as rint
-
-
     def cls():
-        cmd = "clear"
-        if "win" in platform:
-            cmd = "cls"
-        system(cmd)
+        system("clear" if "win" not in platform else "cls")
+    cls()
+
+    is_imported = False
+    while not is_imported:
+        try:
+            from rich import print
+
+            is_imported = True
+        except ImportError:
+            print("Not all modules are installed, please install")
+            import installs
+            installs.install()
+
 
 
     mode_is_valid = False
     while not mode_is_valid:
         mode = input("Enter mode: ")
         mode_is_valid = mode in ["client", "server"]
-        print("Invalid" if not mode_is_valid else "")
+        print("[red]Invalid" if not mode_is_valid else "")
 
     if mode == "client":
         ip_is_valid = False
