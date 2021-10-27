@@ -4,7 +4,6 @@ import client
 import re
 from sys import platform
 from random import randint as rint
-from os import system
 from functions import clear
 
 
@@ -49,7 +48,7 @@ try:
             except TypeError:
                 print("[red]Invalid")
         
-        cls()
+        clear()
         app = client.App(ip, port)
 
     elif mode == "server":
@@ -66,7 +65,7 @@ try:
         else:
             port = int(port)
 
-        cls()
+        clear()
         app = server.App(port)
     
     elif mode == "exit":
