@@ -42,6 +42,6 @@ c | 7 | 8 | 9 |
                                               .replace("-", " ")
                                               .replace("x", "[red]x[/red]")
                                               .replace("o", "[blue]o[/blue]"))
-    banner = "    1   2   3" + banner
+    banner = "    1   2   3" + banner # numbers at the top would get replaced too
     
     print(f"[white]{banner}")

@@ -11,7 +11,7 @@ class App:
     def __init__(self, port):
         # setup server
         self.server = Server()
-        self.server.setup(port=port)
+        self.server.setup(port=port, listen_to=5)
         # get connections
         for id in [("p1", "x"), ("p2", "o")]:
             self.server.new_connection(id[0])

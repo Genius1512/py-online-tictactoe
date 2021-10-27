@@ -21,12 +21,12 @@ class Server:
         self.ip, self.port = None, None
         self.connections = {}
 
-    def setup(self, ip=gethostbyname(gethostname()), port=1234):
+    def setup(self, ip=gethostbyname(gethostname()), port=1234, listen_to=5):
         self.ip, self.port = ip, port
         # create server
         self.server = socket(AF_INET, SOCK_STREAM)
         self.server.bind((self.ip, self.port))
-        self.server.listen(2)
+        self.server.listen(listen_to)
         print(f"[white]Server open with IP [blue]{self.ip}[/blue] on Port [blue]'{self.port}'[/blue]\n")
 
     def new_connection(self, id: str):

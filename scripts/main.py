@@ -68,7 +68,7 @@ try:
         app = server.App(port)
 
     else:
-        print("Fuck")
+        raise Exception("Fuck")
 except Exception as e:
     error()
     print("\n\n[red]An error occured. Please report this to Silvan Schmidt")
