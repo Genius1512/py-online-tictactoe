@@ -53,14 +53,16 @@ try:
     elif mode == "server":
         port_is_valid = False
         while not port_is_valid:
+            port = input("Port: ")
             try:
-                port = int(input("Port: "))
-                port_is_valid = 1000 <= port <= 5000 or port == "random"
-                print("[red]Invalid" if not port_is_valid else "")
-            except TypeError:
-                print("[red]Invalid")
+                port_is_valid = 1000 <= int(port) <= 5000 or port == "random"
+            except ValueError:
+                port_is_valid = port == "random"
+            print("[red]Invalid" if not port_is_valid else "")
         if port == "random":
             port = rint(1000, 5000)
+        else:
+            port = int(port)
 
         cls()
         app = server.App(port)
