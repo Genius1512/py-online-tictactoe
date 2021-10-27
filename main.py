@@ -22,7 +22,10 @@ if mode == "client":
     ip_is_valid = False
     while not ip_is_valid:
         ip = input("Ip: ")
-        ip_is_valid = re.match("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$", ip)
+        ip_is_valid = re.match("^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$", ip) or ip == "self"
+        if ip == "self":
+            from socket import gethostbyname, gethostname
+            ip = gethostbyname(gethostname())
         print("Invalid" if not ip_is_valid else "")
 
     port_is_valid = False

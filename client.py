@@ -44,13 +44,11 @@ class App:
                 is_valid = False
                 while not is_valid:
                     placement = input("> ").lower()
-                    if (re.match("[abc][123]", placement) and self.board[list(placement)[0]][list(placement)[1]] == "-") or placement == "exit":
-                        is_valid = True
-                    else:
-                        if placement == "exit":
-                            quit()
-                        else:
-                            print("[red]Invalid field[/red]")
+                    is_valid = (re.match("[abc][123]", placement) and self.board[list(placement)[0]][list(placement)[1]] == "-") or placement == "exit"
+                    print("[red]Invalid field[/red]" if not is_valid else "")
+                
+                if placement == "exit":
+                    quit()
 
                 placement = list(placement)
                 self.board[placement[0]][placement[1]] = self.icon
