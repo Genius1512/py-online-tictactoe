@@ -1,3 +1,5 @@
+# pyinstaller --onefile -n online_tictactoe_installer_1.1 main.py
+
 from traceback import print_exc as error
 import server
 import client
