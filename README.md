@@ -1,11 +1,40 @@
 # Online Tictactoe
+
 ## How to use
-1. Clone the project:
-```
+
+### Clone the project
+
+```bash
 git clone github.com/genius1512/online_tictactoe
 ```
-2. 
+
+### Move to the online_tictactoe/scripts direcotry
+
+```bash
+cd ./online_tictactoe/scripts
+```
+
+### Start a server
+
+```bash
+python main.py
+server
+<port>
+```
+
+### Connect two clients
+
+```bash
+python main.py
+client
+<ip>
+<port>
+```
+
+2x
+
+### Start playing
+
 ## Todo
-- [ ] make readme
-- [ ] gui
-- [ ] android
+
+Nothing left

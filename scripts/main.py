@@ -17,7 +17,7 @@ try:
 
             is_imported = True
         except ImportError:
-            print("Not all modules are installed, please install")
+            print("Not all modules are installed, please install them")
             import installs
             installs.install()
 

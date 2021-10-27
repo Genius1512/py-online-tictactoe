@@ -32,20 +32,25 @@ class Server:
     def new_connection(self, id: str):
         # validate id
         if id in self.connections:
-            print("[red]Id already used")
-            exit()
+            raise Exception("Id already used")
         else:
             print(f"[white]Waiting for new connection with id [blue]{id}[/blue]")
             self.connections[id], (remotehost, remoteport) = self.server.accept() # accepting the next connection
             print(f"[white][blue]{remotehost}[/blue] connected with id [blue]'{id}'[/blue]\n")
 
     def get(self, id: str): # get a message
-        return loads(self.connections[id].recv(1024))
+        try:
+            return loads(self.connections[id].recv(1024))
+        except ConnectionResetError:
+            raise Exception("Connection lost")
 
     def post(self, ids: list, content: str): # post a message to the specified clients
         for id in ids:
             if id in self.connections:
-                self.connections[id].send(dumps(content))
+                try:
+                    self.connections[id].send(dumps(content))
+                except ConnectionResetError:
+                    raise Exception("Connection lost")
 
 
 class Client:
@@ -59,11 +64,20 @@ class Client:
         self.connect()
 
     def connect(self):
-        self.client.connect((self.ip, self.port))
+        try:
+            self.client.connect((self.ip, self.port))
+        except ConnectionRefusedError:
+            raise Exception("The server refused a connection")
         print(f"[white]Connected to [blue]{self.ip}[/blue] on port [blue]{self.port}[/blue]\n")
 
     def get(self):
-        return loads(self.client.recv(1024)) # get a message from the server
+        try:
+            return loads(self.client.recv(1024)) # get a message from the server
+        except ConnectionResetError:
+            raise Exception("Connection lost")
 
     def post(self, content: str):
-        self.client.send(dumps(content)) # send a message to the server
+        try:
+            self.client.send(dumps(content)) # send a message to the server
+        except ConnectionResetError:
+            raise Exception("Connection lost")
