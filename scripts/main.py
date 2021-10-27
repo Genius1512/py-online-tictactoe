@@ -5,12 +5,11 @@ import re
 from sys import platform
 from random import randint as rint
 from os import system
+from functions import clear
 
 
 try:
-    def cls():
-        system("clear" if "win" not in platform else "cls")
-    cls()
+    clear()
 
     is_imported = False
     while not is_imported:

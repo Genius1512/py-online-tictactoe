@@ -8,10 +8,7 @@ from rich import print
 
 # clear the console
 def clear():
-    cmd = "clear"
-    if "win" in sys.platform:
-        cmd = "cls"
-    os.system(cmd)
+  system("clear" if "win" not in platform else "cls")
     
 # get board
 def get_board():
