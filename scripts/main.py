@@ -28,7 +28,7 @@ try:
     mode_is_valid = False
     while not mode_is_valid:
         mode = input("Enter mode: ")
-        mode_is_valid = mode in ["client", "server"]
+        mode_is_valid = mode in ["client", "server", "exit"]
         print("[red]Invalid" if not mode_is_valid else "")
 
     if mode == "client":
@@ -69,6 +69,9 @@ try:
 
         cls()
         app = server.App(port)
+    
+    elif mode == "exit":
+        quit()
 
     else:
         raise Exception("Fuck")
