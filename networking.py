@@ -12,7 +12,6 @@
 #    post() -> sends a message to the server
 
 from socket import *
-from random import randint as rint
 from rich import print
 from pickle import loads, dumps
 

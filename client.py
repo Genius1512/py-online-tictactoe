@@ -9,13 +9,19 @@ from functions import *
 import re
 from pyfiglet import figlet_format as banner
 from rich import print
+from socket import gethostname, gethostbyname
 
 
 class App:
-    def __init__(self):
+    def __init__(self, ip, port):
+        if ip == None:
+            ip = gethostbyname(gethostname())
+        if port == None:
+            port = 1234
+
         # setup
         self.client = Client()
-        self.client.setup()
+        self.client.setup(ip, port)
 
         self.icon = self.client.get()
         print(f"Icon: [blue]{self.icon}[/blue]\n")
@@ -70,4 +76,4 @@ class App:
 
 
 if __name__ == "__main__":
-    app = App()
+    app = App(None, None)
