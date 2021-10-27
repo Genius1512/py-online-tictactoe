@@ -8,6 +8,7 @@ try:
     from os import system
     from sys import platform
     from random import randint as rint
+    from rich import print
 
 
     def cls():
@@ -31,16 +32,16 @@ try:
             if ip == "self":
                 from socket import gethostbyname, gethostname
                 ip = gethostbyname(gethostname())
-            print("Invalid" if not ip_is_valid else "")
+            print("[red]Invalid" if not ip_is_valid else "")
 
         port_is_valid = False
         while not port_is_valid:
             try:
                 port = int(input("Port: "))
                 port_is_valid = 1000 <= port <= 5000
-                print("Invalid" if not port_is_valid else "")
+                print("[red]Invalid" if not port_is_valid else "")
             except TypeError:
-                print("Invalid")
+                print("[red]Invalid")
         
         cls()
         app = client.App(ip, port)
