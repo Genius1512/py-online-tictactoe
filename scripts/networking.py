@@ -60,7 +60,7 @@ class Client:
 
     def connect(self):
         self.client.connect((self.ip, self.port))
-        print(f"[white]Connected to [blue]{self.ip}[/blue]\n")
+        print(f"[white]Connected to [blue]{self.ip}[/blue] on port [blue]{self.port}[/blue]\n")
 
     def get(self):
         return loads(self.client.recv(1024)) # get a message from the server

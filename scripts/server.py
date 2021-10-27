@@ -8,7 +8,7 @@ from rich import print
 
 
 class App:
-    def __init__(self, port=1234):
+    def __init__(self, port):
         # setup server
         self.server = Server()
         self.server.setup(port=port)

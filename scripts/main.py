@@ -2,13 +2,17 @@ from traceback import print_exc as error
 
 
 try:
+    try:
+        from rich import print
+    except ImportError:
+        print("Not all modules are installed, please install")
+        import installs
     import server
     import client
     import re
     from os import system
     from sys import platform
     from random import randint as rint
-    from rich import print
 
 
     def cls():
@@ -47,10 +51,23 @@ try:
         app = client.App(ip, port)
 
     elif mode == "server":
+        port_is_valid = False
+        while not port_is_valid:
+            try:
+                port = int(input("Port: "))
+                port_is_valid = 1000 <= port <= 5000 or port == "random"
+                print("[red]Invalid" if not port_is_valid else "")
+            except TypeError:
+                print("[red]Invalid")
+        if port == "random":
+            port = rint(1000, 5000)
+
         cls()
-        app = server.App(rint(1000, 5000))
+        app = server.App(port)
 
     else:
         print("Fuck")
 except Exception as e:
     error()
+    print("\n\n[red]An error occured. Please report this to Silvan Schmidt")
+    input("Enter to quit")

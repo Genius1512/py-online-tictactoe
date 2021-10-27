@@ -38,7 +38,10 @@ c | 7 | 8 | 9 |
     for letter in board:
         for num in board[letter]:
             ind += 1
-            banner = banner.replace(str(ind), board[letter][num].replace("-", " "))
+            banner = banner.replace(str(ind), board[letter][num]
+                                              .replace("-", " ")
+                                              .replace("x", "[red]x[/red]")
+                                              .replace("o", "[blue]o[/blue]"))
     banner = "    1   2   3" + banner
     
     print(f"[white]{banner}")
