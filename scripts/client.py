@@ -7,7 +7,6 @@
 from networking import Client
 from functions import *
 import re
-from pyfiglet import figlet_format as banner
 from rich import print
 from socket import gethostname, gethostbyname
 
@@ -65,11 +64,11 @@ class App:
                 # print end screen
                 print_board(board)
                 if state == "tie":
-                    print("[green]" + banner("It's a tie!") + "[/green]")
+                    print("[green]" + "It's a tie!" + "[/green]")
                 elif state == self.icon:
-                    print("[blue]" + banner("You won!") + "[/blue]")
+                    print("[blue]" + "You won!" + "[/blue]")
                 else:
-                    print("[red]" + banner("You lost!") + "[/red]")
+                    print("[red]" + "You lost!" + "[/red]")
                 quit()
 
 

@@ -4,7 +4,6 @@
 
 import os
 import sys
-from pyfiglet import figlet_format as banner
 
 # clear the console
 def clear():
@@ -25,8 +24,20 @@ def get_board():
 
 # prints out the board
 def print_board(board):
-    print(banner(f"""         1  2  3
-a {board["a"]["1"]} {board["a"]["2"]} {board["a"]["3"]}
-b {board["b"]["1"]} {board["b"]["2"]} {board["b"]["3"]}
-c {board["c"]["1"]} {board["c"]["2"]} {board["c"]["3"]}
-"""))
+    banner = """
+  -------------
+a | 1 | 2 | 3 |
+  -------------
+b | 4 | 5 | 6 |
+  -------------
+c | 7 | 8 | 9 |
+  -------------
+"""
+    ind = 0
+    for letter in board:
+        for num in board[letter]:
+            ind += 1
+            banner = banner.replace(str(ind), board[letter][num].replace("-", " "))
+    banner = "    1   2   3" + banner
+    
+    print(banner)
