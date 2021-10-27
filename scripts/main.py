@@ -1,10 +1,12 @@
-# pyinstaller --onefile -n online_tictactoe_installer_1.1 main.py
+# pyinstaller --onefile -n scripts/online_tictactoe_installer_1.1 main.py
+# TODO: Update exe
 
 from traceback import print_exc as error
 import server
 import client
 import re
 from sys import platform
+from sys import exit as quit
 from random import randint as rint
 from functions import clear
 
@@ -75,6 +77,10 @@ try:
 
     else:
         raise Exception("Fuck")
+
+    print("Enter to quit")
+    input("")
+
 except Exception as e:
     error()
     print("\n\n[red]An error occured. Please report this to Silvan Schmidt")

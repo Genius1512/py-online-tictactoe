@@ -6,6 +6,7 @@ from functions import *
 import re
 from socket import gethostname, gethostbyname
 from rich import print
+from sys import exit as quit
 
 
 class App:

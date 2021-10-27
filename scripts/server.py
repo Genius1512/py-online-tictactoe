@@ -5,6 +5,7 @@ from networking import Server
 from functions import *
 import time as t
 from rich import print
+from sys import exit as quit
 
 
 class App:

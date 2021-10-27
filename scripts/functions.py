@@ -5,6 +5,7 @@
 import os
 import sys
 from rich import print
+from sys import exit as quit
 
 # clear the console
 def clear():
