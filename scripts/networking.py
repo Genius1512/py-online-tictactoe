@@ -12,7 +12,6 @@
 #    post() -> sends a message to the server
 
 from socket import *
-from rich import print
 from pickle import loads, dumps
 
 
@@ -27,17 +26,17 @@ class Server:
         self.server = socket(AF_INET, SOCK_STREAM)
         self.server.bind((self.ip, self.port))
         self.server.listen(2)
-        print(f"Server open with IP [blue]{self.ip}[/blue] on Port '[blue]{self.port}[/blue]'\n")
+        print(f"Server open with IP {self.ip} on Port '{self.port}'\n")
 
     def new_connection(self, id: str):
         # validate id
         if id in self.connections:
-            print("[red]Id already used[/red]")
+            print("Id already used")
             exit()
         else:
-            print(f"Waiting for new connection with id [blue]{id}[/blue]")
+            print(f"Waiting for new connection with id {id}")
             self.connections[id], (remotehost, remoteport) = self.server.accept() # accepting the next connection
-            print(f"[blue]{remotehost}[/blue] connected with id '[blue]{id}[/blue]'\n")
+            print(f"{remotehost} connected with id '{id}'\n")
 
     def get(self, id: str): # get a message
         return loads(self.connections[id].recv(1024))
@@ -60,7 +59,7 @@ class Client:
 
     def connect(self):
         self.client.connect((self.ip, self.port))
-        print(f"Connected to [blue]{self.ip}[/blue]\n")
+        print(f"Connected to {self.ip}\n")
 
     def get(self):
         return loads(self.client.recv(1024)) # get a message from the server
