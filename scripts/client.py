@@ -66,7 +66,7 @@ class App:
                     print("" + "You won!" + "")
                 else:
                     print("" + "You lost!" + "")
-                raise End()
+                self.done = True
 
 
 if __name__ == "__main__":

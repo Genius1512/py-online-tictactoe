@@ -35,7 +35,7 @@ class App:
                         "state": state,
                         "board": self.board
                     })
-                    raise End()
+                    self.done = True
 
     def get_turn(self, id):
         self.server.post([id], {
