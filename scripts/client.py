@@ -6,7 +6,6 @@ from functions import *
 import re
 from socket import gethostname, gethostbyname
 from rich import print
-from sys import exit as quit
 
 
 class App:
@@ -45,7 +44,7 @@ class App:
                     print("[red]Invalid field" if not is_valid else "")
                 
                 if placement == "exit":
-                    quit()
+                    raise End()
 
                 placement = list(placement)
                 self.board[placement[0]][placement[1]] = self.icon
@@ -67,7 +66,7 @@ class App:
                     print("" + "You won!" + "")
                 else:
                     print("" + "You lost!" + "")
-                quit()
+                raise End()
 
 
 if __name__ == "__main__":

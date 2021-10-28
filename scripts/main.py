@@ -1,14 +1,12 @@
-# pyinstaller --onefile -n scripts/online_tictactoe_installer_1.1 main.py
+# pyinstaller --onefile -n "Online TicTacToe" scripts/main.py
 # TODO: Update exe
 
 from traceback import print_exc as error
 import server
 import client
 import re
-from sys import platform
-from sys import exit as quit
 from random import randint as rint
-from functions import clear
+from functions import clear, End
 
 
 try:
@@ -73,12 +71,14 @@ try:
         app = server.App(port)
     
     elif mode == "exit":
-        quit()
+        raise End()
 
     else:
         raise Exception("Fuck")
 
-    print("Enter to quit")
+
+except End:
+    print("\nEnter to quit")
     input("")
 
 except Exception as e:

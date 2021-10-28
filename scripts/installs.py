@@ -1,7 +1,6 @@
 import os
 from sys import platform
 import pip
-from sys import exit as quit
 
 
 def install():

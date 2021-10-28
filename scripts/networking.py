@@ -14,7 +14,6 @@
 from socket import *
 from pickle import loads, dumps
 from rich import print
-from sys import exit as quit
 
 
 class Server:

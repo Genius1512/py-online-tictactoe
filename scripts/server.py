@@ -5,7 +5,6 @@ from networking import Server
 from functions import *
 import time as t
 from rich import print
-from sys import exit as quit
 
 
 class App:
@@ -36,7 +35,7 @@ class App:
                         "state": state,
                         "board": self.board
                     })
-                    quit()
+                    raise End()
 
     def get_turn(self, id):
         self.server.post([id], {

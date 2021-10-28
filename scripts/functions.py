@@ -7,6 +7,10 @@ import sys
 from rich import print
 from sys import exit as quit
 
+
+class End(Exception):
+  pass
+
 # clear the console
 def clear():
   os.system("clear" if "win" not in sys.platform else "cls")
