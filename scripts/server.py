@@ -1,7 +1,7 @@
 # This is the server for tictactoe. It handles the communication 
 # between the two clients
 
-from networking import Server
+from high_lvl_networking import Server
 from functions import *
 import time as t
 from rich import print
@@ -12,6 +12,7 @@ class App:
         # setup server
         self.server = Server()
         self.server.setup(port=port, listen_to=5)
+        
         # get connections
         for id in [("p1", "x"), ("p2", "o")]:
             self.server.new_connection(id[0])
@@ -59,6 +60,7 @@ class App:
                 return "x"
             elif o_in_row == 3:
                 return "o"
+
         # vertical
         for num in ["1", "2", "3"]:
             x_in_row = 0
@@ -72,6 +74,7 @@ class App:
                 return "x"
             elif o_in_row == 3:
                 return "o"
+
         # diagonal
         if f'{board["a"]["1"]}{board["b"]["2"]}{board["c"]["3"]}' == "xxx":
             return "x"
@@ -81,6 +84,7 @@ class App:
             return "x"
         if f'{board["a"]["3"]}{board["b"]["2"]}{board["c"]["1"]}' == "ooo":
             return "o"
+
         # tie
         is_tie = True
         for letter in board:

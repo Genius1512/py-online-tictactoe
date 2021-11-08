@@ -1,6 +1,6 @@
 # pyinstaller --onefile -n "Online TicTacToe" scripts/main.py
 # TODO: Update exe
-# TODO: Android?
+# TODO: Logo
 
 from traceback import print_exc as error
 import server
@@ -12,9 +12,8 @@ import ctypes
 
 
 try:
-    ctypes.windll.kernel32.SetConsoleTitleW("TicTacToe")
-
     while True:
+        ctypes.windll.kernel32.SetConsoleTitleW("TicTacToe")
         clear()
 
         is_imported = False
